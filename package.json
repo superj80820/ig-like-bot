@@ -1,0 +1,25 @@
+{
+  "name": "ig-like-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/superj80820/ig-like-bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/superj80820/ig-like-bot/issues"
+  },
+  "homepage": "https://github.com/superj80820/ig-like-bot#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.40.1",
+    "@types/dotenv": "^8.2.0",
+    "@types/node": "^20.10.3",
+    "dotenv": "^16.3.1"
+  },
+  "dependencies": {}
+}
