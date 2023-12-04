@@ -9,6 +9,7 @@
 
 ```
 $ npm install
-$ npx playwright install
-$ npx playwright test --headed
+$ npm install -g typescript
+$ npm install -g ts-node
+$ ts-node main.ts
 ```
