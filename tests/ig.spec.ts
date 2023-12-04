@@ -6,6 +6,8 @@ dotenv.config();
 const USER_EMAIL = process.env.USER_EMAIL ?? "";
 const USER_PASSWORD = process.env.USER_PASSWORD ?? "";
 
+test.setTimeout(60000);
+
 test('click like button', async ({ page }) => {
   await page.goto('https://www.instagram.com/');
 
