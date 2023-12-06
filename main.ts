@@ -61,7 +61,7 @@ const likePost = async (page: Page) => {
 }
 
 const likeProcess = async () => {
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({ headless: false });
   const context = await browser.newContext();
   context.setDefaultTimeout(60000);
   const page = await context.newPage();
@@ -75,14 +75,33 @@ const likeProcess = async () => {
   await page.getByLabel('Password').click();
   await page.getByLabel('Password').fill(USER_PASSWORD);
   await page.getByRole('button', { name: 'Log in', exact: true }).click();
-  await page.getByRole('button', { name: 'Not now' }).click();
-  // await page.getByRole('button', { name: 'Not Now' }).click();
+  try {
+    await page.getByRole('button', { name: 'Not now' }).click();
+  } catch (err) {
+    console.log("miss Not now button")
+  }
+  try {
+    await page.getByRole('button', { name: 'Not Now' }).click();
+  } catch (err) {
+    console.log("miss Not Now button")
+  }
 
   while (true) {
     await page.goto('https://www.instagram.com/');
 
-    await likeStory(page);
-    await likePost(page);
+    if (storyLikeCount < 750) {
+      await likeStory(page);
+    }
+    if (postLikeCount < 250) {
+      await likePost(page);
+    }
+    if (storyLikeCount + postLikeCount === 1000) {
+      await new Promise<void>((resolve, reject) => {
+        setTimeout(() => {
+          resolve()
+        }, 1000 * 60 * 60 * 6)
+      })
+    }
 
     await page.reload();
   }
