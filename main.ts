@@ -20,7 +20,7 @@ const likeStory = async (page: Page) => {
   console.log("---like story: start---")
   await page.getByLabel(/Story by .+/i).first().click();
   let missStoryLikeButtonCount = 0;
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 100; i++) {
     if (missStoryLikeButtonCount >= 10) {
       missStoryLikeButtonCount = 0;
       console.log("---like story: done---")
@@ -43,7 +43,7 @@ const likeStory = async (page: Page) => {
 const likePost = async (page: Page) => {
   console.log("---like post: start---")
   let missLikePostButtonCount = 0;
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 50; i++) {
     if (missLikePostButtonCount >= 10) {
       console.log("---like post: done---")
       break
