@@ -20,7 +20,7 @@ const likeStory = async (page: Page) => {
   console.log("---like story: start---")
   await page.getByLabel(/Story by .+/i).first().click();
   let missStoryLikeButtonCount = 0;
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 750; i++) {
     if (missStoryLikeButtonCount >= 10) {
       missStoryLikeButtonCount = 0;
       console.log("---like story: done---")
@@ -98,9 +98,13 @@ const likeProcess = async () => {
     if (storyLikeCount < 750) {
       await likeStory(page);
     }
+
+    await page.goto('https://www.instagram.com/');
+
     if (postLikeCount < 250) {
       await likePost(page);
     }
+
     if (storyLikeCount + postLikeCount === 1000) {
       await new Promise<void>((resolve, reject) => {
         setTimeout(() => {
