@@ -10,6 +10,12 @@ const USER_PASSWORD = process.env.USER_PASSWORD ?? "";
 let storyLikeCount = 0;
 let postLikeCount = 0;
 
+const getRandomInt = (min: number, max: number) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+}
+
 const likeStory = async (page: Page) => {
   console.log("---like story: start---")
   await page.getByLabel(/Story by .+/i).first().click();
@@ -30,7 +36,7 @@ const likeStory = async (page: Page) => {
     await page.getByLabel('Next').first().click();
     console.log("click story like, now: ", storyLikeCount);
     storyLikeCount++;
-    await page.waitForTimeout(1000);
+    await page.waitForTimeout(1000 + getRandomInt(1000, 5000));
   }
 }
 
@@ -52,10 +58,10 @@ const likePost = async (page: Page) => {
           });
         console.log("click post like, now: ", postLikeCount);
         postLikeCount++;
-        await page.waitForTimeout(1000);
+        await page.waitForTimeout(1000 + getRandomInt(1000, 5000));
       }
       await page.reload();
-      await page.waitForTimeout(5000);
+      await page.waitForTimeout(5000 + getRandomInt(1000, 5000));
     })();
   }
 }
